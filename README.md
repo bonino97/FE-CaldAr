@@ -22,3 +22,5 @@ Tambien te ayuda a manejar los datos, conforme el Usuario realiza diferentes acc
 - Action: Son Objetos (js), tienen un Tipo y un Payload (Datos).
 - Subscribe: Similar a un Event Listener para el State.
 - Reducers: Funciones, saben que hacer con las Acciones y el Payload. 
+
+![image](https://user-images.githubusercontent.com/24545141/140233398-09735dd7-71aa-4cc0-926b-3710d0b59045.png)
