@@ -6,7 +6,7 @@ Permite manejar el 'State' de una aplicacion, para que sea mas facil mantener co
 Tambien te ayuda a manejar los datos, conforme el Usuario realiza diferentes acciones.
 
 ## Caracteristicas de Redux.
-- Solo se tiene un state principal.
+- Solo se tiene un State principal.
 - El State cambia de acuerdo a lo que sucede en la interfaz de Usuario.
 - Solo ciertas funciones cambian el State.
 - El Usuario es el que utiliza estas funciones y cambia el state.
