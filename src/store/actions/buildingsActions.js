@@ -12,12 +12,12 @@ import {
 
 // Crear Nuevo Edificio.
 
-export const addNewBuildingAction = () => {
-  console.log('Desde addNewBuilding Action.');
+export const addNewBuildingAction = (building) => {
+  console.log(building);
   return () => {};
 };
 
-export const editBuildingAction = () => {
+export const editBuildingAction = (building) => {
   console.log('Desde editBuildingAction Action.');
   return () => {};
 };
