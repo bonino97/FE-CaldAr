@@ -35,6 +35,8 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: false,
+        error: action.payload,
+        // En este caso, el error pasa a true. (Para poder notificar al usuario)
       };
     default:
       return state;

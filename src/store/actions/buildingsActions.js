@@ -1,3 +1,5 @@
+import client from '../../config/axios';
+
 import {
   ADD_BUILDING,
   ADD_BUILDING_SUCCESS,
@@ -14,10 +16,15 @@ import {
 
 export function addNewBuildingAction(building) {
   return (dispatch) => {
+    // Primero intenta cargar un edificio. Cargando = True.
+    client.post('/building', building);
     dispatch(addNewBuilding());
     try {
+      // Si lo agrega correctamente, dispara la accion con el objeto de edificio cargado correctamente.
       dispatch(addNewBuildingSuccess(building));
     } catch (error) {
+      console.error(error);
+      // Si falla, envia una notificacion de error.
       dispatch(addNewBuildingError(true));
     }
   };
@@ -34,8 +41,9 @@ const addNewBuildingSuccess = (building) => ({
 });
 
 // Si ocurre un error en el guardado del edificio.
-const addNewBuildingError = () => ({
+const addNewBuildingError = (status) => ({
   type: ADD_BUILDING_ERROR,
+  payload: status,
 });
 
 // Editar Edificio.
