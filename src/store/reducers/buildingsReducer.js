@@ -29,6 +29,7 @@ export default function (state = initialState, action) {
         ...state,
         loading: false,
         buildings: [...state.buildings, action.payload],
+        error: false,
         // Esto genera una copia del arreglo inicial que recibimos de edificios y le agrega en caso de exito, el nuevo edificio.
       };
     case ADD_BUILDING_ERROR:
