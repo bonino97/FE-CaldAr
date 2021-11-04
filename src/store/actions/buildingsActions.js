@@ -1,5 +1,5 @@
+import Swal from 'sweetalert2';
 import client from '../../config/axios';
-
 import {
   ADD_BUILDING,
   ADD_BUILDING_SUCCESS,
@@ -12,20 +12,35 @@ import {
   DELETE_BUILDING_ERROR,
 } from '../../types/buildings';
 
+const buildingUrl = '/building';
+
 // Crear Nuevo Edificio.
 
 export function addNewBuildingAction(building) {
-  return (dispatch) => {
-    // Primero intenta cargar un edificio. Cargando = True.
-    client.post('/building', building);
+  return async (dispatch) => {
     dispatch(addNewBuilding());
     try {
+      // Primero intenta cargar un edificio. Cargando = True.
+      await client.post(`${buildingUrl}`, building);
       // Si lo agrega correctamente, dispara la accion con el objeto de edificio cargado correctamente.
       dispatch(addNewBuildingSuccess(building));
+
+      // Alerta exitosa.
+      Swal.fire(
+        'Correcto',
+        'El edificio se agrego correctamente...',
+        'success'
+      );
     } catch (error) {
       console.error(error);
       // Si falla, envia una notificacion de error.
       dispatch(addNewBuildingError(true));
+      // Alerta de error.
+      Swal.fire({
+        icon: 'error',
+        title: 'Ocurrio un error.',
+        text: 'Ocurrio un error, intenta de nuevo.',
+      });
     }
   };
 }

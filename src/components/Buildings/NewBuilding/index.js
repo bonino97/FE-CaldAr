@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { addNewBuildingAction } from '../../../store/actions/buildingsActions';
 
-const NewBuilding = () => {
+const NewBuilding = ({ history }) => {
   // useState Se utiliza para setear los valores en los campos del formulario.
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
@@ -11,6 +11,10 @@ const NewBuilding = () => {
   const [description, setDescription] = useState('');
   // Permite utilziar los dispatch.
   const dispatch = useDispatch();
+
+  // Acceder al state del Store! [!IMPORTANTE!]
+  const { loading, error } = useSelector((state) => state.buildings);
+  console.log(loading, error);
 
   // Llama el action.
   const addNewBuilding = (building) => dispatch(addNewBuildingAction(building));
@@ -31,6 +35,9 @@ const NewBuilding = () => {
     };
 
     addNewBuilding(building);
+
+    // Redireccionar a la lista de edificios.
+    history.push('/');
   };
 
   return (
@@ -110,6 +117,13 @@ const NewBuilding = () => {
                 Agregar
               </button>
             </form>
+            {loading ? <p> Loading... </p> : null}
+
+            {error ? (
+              <p className='alert alert-danger p-2 m-4 text-center'>
+                Ocurrio un error.
+              </p>
+            ) : null}
           </div>
         </div>
       </div>
