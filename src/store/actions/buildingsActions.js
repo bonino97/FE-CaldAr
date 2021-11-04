@@ -91,16 +91,6 @@ const getAllBuildingsError = (status) => ({
   payload: status,
 });
 
-// Editar Edificio.
-export const editBuildingAction = (building) => {
-  console.log('Desde editBuildingAction Action.');
-  return () => {};
-};
-
-const editBuilding = () => ({
-  type: EDIT_BUILDING,
-});
-
 // Eliminar Edificio.
 export const deleteBuildingAction = (id) => {
   return async (dispatch) => {
@@ -136,5 +126,26 @@ const deleteBuildingSuccess = (id) => ({
 
 const deleteBuildingError = (status) => ({
   type: DELETE_BUILDING_ERROR,
+  payload: status,
+});
+
+// Editar Edificio.
+export const editBuildingAction = (building) => {
+  return async (dispatch) => {
+    dispatch(editBuilding());
+  };
+};
+
+const editBuilding = () => ({
+  type: EDIT_BUILDING,
+});
+
+const editBuildingSuccess = (building) => ({
+  type: EDIT_BUILDING_SUCCESS,
+  payload: building,
+});
+
+const editBuildingError = (status) => ({
+  type: EDIT_BUILDING_ERROR,
   payload: status,
 });
