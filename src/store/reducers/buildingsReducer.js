@@ -75,7 +75,9 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: false,
-        buildings: [...state.buildings, action.payload],
+        buildings: state.buildings.filter(
+          (building) => building._id !== action.payload
+        ),
         error: false,
         // Esto genera una copia del arreglo inicial que recibimos de edificios y le agrega en caso de exito, el nuevo edificio.
       };
