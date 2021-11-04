@@ -132,12 +132,13 @@ const deleteBuildingError = (status) => ({
 // Editar Edificio.
 export const editBuildingAction = (building) => {
   return async (dispatch) => {
-    dispatch(editBuilding());
+    dispatch(editBuilding(building));
   };
 };
 
-const editBuilding = () => ({
+const editBuilding = (building) => ({
   type: EDIT_BUILDING,
+  payload: building,
 });
 
 const editBuildingSuccess = (building) => ({

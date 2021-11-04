@@ -3,7 +3,10 @@ import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
-import { deleteBuildingAction } from '../../../store/actions/buildingsActions';
+import {
+  deleteBuildingAction,
+  editBuildingAction,
+} from '../../../store/actions/buildingsActions';
 
 const Building = ({ building }) => {
   const { _id, name, address, category, description } = building;
@@ -30,6 +33,7 @@ const Building = ({ building }) => {
   };
 
   const onEditRedirection = (id) => {
+    dispatch(editBuildingAction(building));
     history.push(`/buildings/edit/${id}`);
   };
 

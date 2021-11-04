@@ -91,11 +91,11 @@ export default function (state = initialState, action) {
         // En este caso, el error pasa a true. (Para poder notificar al usuario)
       };
 
-      
     case EDIT_BUILDING:
       return {
         ...state,
-        loading: true,
+        loading: false,
+        building: action.payload,
       };
 
     case EDIT_BUILDING_SUCCESS:
