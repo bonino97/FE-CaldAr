@@ -7,9 +7,8 @@ import { getAllBuildingsAction } from '../../store/actions/buildingsActions';
 
 const Buildings = () => {
   const dispatch = useDispatch();
-
+  const getAllBuildings = () => dispatch(getAllBuildingsAction());
   useEffect(() => {
-    const getAllBuildings = () => dispatch(getAllBuildingsAction());
     getAllBuildings();
   }, []);
 

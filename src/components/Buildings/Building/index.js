@@ -20,12 +20,12 @@ const Building = ({ building }) => {
       <td>{category}</td>
       <td>{description}</td>
       <td className='actions'>
-        <button type='button' className='btn btn-primary mr-2'>
+        <button type='button' className='btn btn-primary m-1 '>
           Editar
         </button>
         <button
           type='button'
-          className='btn btn-danger'
+          className='btn btn-danger m-1'
           onClick={() => deleteBuilding(_id)}
         >
           Eliminar
