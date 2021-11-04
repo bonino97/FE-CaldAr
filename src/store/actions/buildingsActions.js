@@ -102,11 +102,39 @@ const editBuilding = () => ({
 });
 
 // Eliminar Edificio.
+export const deleteBuildingAction = (id) => {
+  return async (dispatch) => {
+    dispatch(deleteBuilding());
+    try {
+      await client.delete(`${buildingUrl}/${id}`);
+      dispatch(deleteBuildingSuccess(id));
+      Swal.fire(
+        'Eliminado',
+        'El edificio se elimino correctamente...',
+        'success'
+      );
+    } catch (error) {
+      console.error(error);
+      dispatch(deleteBuildingError(true));
+      Swal.fire({
+        icon: 'error',
+        title: 'Ocurrio un error.',
+        text: 'Ocurrio un error al eliminar el edificio, intenta de nuevo.',
+      });
+    }
+  };
+};
+
 const deleteBuilding = () => ({
   type: DELETE_BUILDING,
 });
 
-export const deleteBuildingAction = () => {
-  console.log('Desde deleteBuildingAction Action.');
-  return () => {};
-};
+const deleteBuildingSuccess = (id) => ({
+  type: DELETE_BUILDING_SUCCESS,
+  payload: id,
+});
+
+const deleteBuildingError = (status) => ({
+  type: DELETE_BUILDING_ERROR,
+  payload: status,
+});
