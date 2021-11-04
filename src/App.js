@@ -1,11 +1,7 @@
+import Header from './shared/Header';
+
 function App() {
-  return (
-    <div class='row'>
-      <div class='col-md-12 text-center'>
-        <h1>Hola Mundo</h1>
-      </div>
-    </div>
-  );
+  return <Header />;
 }
 
 export default App;
