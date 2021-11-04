@@ -15,7 +15,7 @@ import {
   GET_BUILDINGS_ERROR,
 } from '../../types/buildings';
 
-const buildingUrl = '/building1';
+const buildingUrl = '/building';
 
 // Crear Nuevo Edificio.
 export function addNewBuildingAction(building) {
