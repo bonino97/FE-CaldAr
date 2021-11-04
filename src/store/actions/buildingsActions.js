@@ -10,12 +10,14 @@ import {
   DELETE_BUILDING,
   DELETE_BUILDING_SUCCESS,
   DELETE_BUILDING_ERROR,
+  GET_BUILDINGS,
+  GET_BUILDINGS_SUCCESS,
+  GET_BUILDINGS_ERROR,
 } from '../../types/buildings';
 
-const buildingUrl = '/building';
+const buildingUrl = '/building1';
 
 // Crear Nuevo Edificio.
-
 export function addNewBuildingAction(building) {
   return async (dispatch) => {
     dispatch(addNewBuilding());
@@ -61,8 +63,35 @@ const addNewBuildingError = (status) => ({
   payload: status,
 });
 
-// Editar Edificio.
+// Obtener todos los Edificios.
+export function getAllBuildingsAction() {
+  return async (dispatch) => {
+    dispatch(getAllBuildings());
+    try {
+      const { data } = await client.get(`${buildingUrl}/all`);
+      dispatch(getAllBuildingsSuccess(data));
+    } catch (error) {
+      console.error(error);
+      dispatch(getAllBuildingsError(true));
+    }
+  };
+}
 
+const getAllBuildings = () => ({
+  type: GET_BUILDINGS,
+});
+
+const getAllBuildingsSuccess = (buildings) => ({
+  type: GET_BUILDINGS_SUCCESS,
+  payload: buildings,
+});
+
+const getAllBuildingsError = (status) => ({
+  type: GET_BUILDINGS_ERROR,
+  payload: status,
+});
+
+// Editar Edificio.
 export const editBuildingAction = (building) => {
   console.log('Desde editBuildingAction Action.');
   return () => {};

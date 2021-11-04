@@ -14,8 +14,7 @@ const NewBuilding = ({ history }) => {
 
   // Acceder al state del Store! [!IMPORTANTE!]
   const { loading, error } = useSelector((state) => state.buildings);
-  console.log(loading, error);
-
+  
   // Llama el action.
   const addNewBuilding = (building) => dispatch(addNewBuildingAction(building));
 

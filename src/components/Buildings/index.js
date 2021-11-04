@@ -1,19 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
 import Building from './Building';
 
+import { getAllBuildingsAction } from '../../store/actions/buildingsActions';
+
 const Buildings = () => {
-  const buildings = [
-    {
-      id: 1,
-      name: 'Juan Cruz',
-      address: 'San Luis 724',
-      category: 'Edificio Nuevo',
-      description: '13 Pisos, 3 Habitaciones y 2 baños.',
-    },
-  ];
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getAllBuildings = () => dispatch(getAllBuildingsAction());
+    getAllBuildings();
+  }, []);
+
+  const { loading, error, buildings } = useSelector((state) => state.buildings);
+
   return (
     <>
       <h2 className='text-center my-5'>Listado de Edificios</h2>
+      {loading ? <h4 className='text-center'> Loading... </h4> : null}
+
+      {error ? (
+        <p className='alert alert-danger p-2 m-4 text-center'>
+          Ocurrio un error.
+        </p>
+      ) : null}
+
       <table className='table table-striped'>
         <thead className='bg-primary table-dark'>
           <tr>
@@ -28,7 +40,7 @@ const Buildings = () => {
           {buildings.length === 0
             ? 'No hay Edificios'
             : buildings.map((building) => (
-                <Building key={building.id} building={building} />
+                <Building key={building._id} building={building} />
               ))}
         </tbody>
       </table>
