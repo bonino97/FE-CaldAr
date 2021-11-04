@@ -1,6 +1,23 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { addNewBuildingAction } from '../../../store/actions/buildingsActions';
 
 const NewBuilding = () => {
+  // Permite utilziar los dispatch.
+  const dispatch = useDispatch();
+
+  // Llama el action.
+  const addNewBuilding = () => dispatch(addNewBuildingAction);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    //Validar formulario.
+    //Si no hay errores.
+    //Crear Edificio.
+    addNewBuilding();
+  };
+
   return (
     <div className='row justify-content-center'>
       <div className='col-md-8 p-4'>
@@ -10,7 +27,7 @@ const NewBuilding = () => {
               Agregar Nuevo Edificio
             </h2>
 
-            <form>
+            <form onSubmit={onSubmit}>
               <div className='form-group'>
                 <label>Nombre Edificio</label>
                 <input
