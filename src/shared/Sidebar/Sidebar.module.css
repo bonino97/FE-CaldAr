@@ -1,0 +1,22 @@
+.sidebar {
+    width: 10rem;
+    height: calc( 100vh - 52px );
+    border-right: 1px solid $gray;
+    background-color: coral;
+  }
+
+  
+  ul {
+    list-style: none;
+    padding: 1rem 2rem;
+  }
+  
+  li {
+    margin-bottom: 1rem;
+  }
+
+  
+  a {
+    text-decoration: none;
+    color: white;
+  }
