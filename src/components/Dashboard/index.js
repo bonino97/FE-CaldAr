@@ -11,12 +11,28 @@ const Dashboard = () => {
           </div>
           <div className='card-body'>
             <div className='row'>
-              <div className='col-12'>
+              <div className='col-4'>
                 <Link
                   to={'/buildings'}
                   className='btn btn-danger nuevo-post d-block d-md-inline-block'
                 >
                   Lista de Edificios
+                </Link>
+              </div>
+              <div className='col-4'>
+                <Link
+                  to={'/users'}
+                  className='btn btn-danger nuevo-post d-block d-md-inline-block'
+                >
+                  Lista de Usuarios
+                </Link>
+              </div>
+              <div className='col-4'>
+                <Link
+                  to={'/boilers'}
+                  className='btn btn-danger nuevo-post d-block d-md-inline-block'
+                >
+                  Lista de Calderas
                 </Link>
               </div>
             </div>
