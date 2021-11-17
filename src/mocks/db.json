@@ -1,0 +1,143 @@
+{
+  "users": [
+    {
+      "id": 2,
+      "first_name": "Juan Martin",
+      "last_name": "alfonso",
+      "email": "walfonso@hotmail.com",
+      "department": "Business Development"
+    },
+    {
+      "id": 3,
+      "first_name": "Nanete",
+      "last_name": "Wakley",
+      "email": "nwakley2@amazon.com",
+      "department": "Product Management"
+    },
+    {
+      "id": 4,
+      "first_name": "Felice",
+      "last_name": "Kuller",
+      "email": "fkuller3@lulu.com",
+      "department": "Engineering"
+    },
+    {
+      "id": 6,
+      "first_name": "Edlin",
+      "last_name": "Kaser",
+      "email": "ekaser5@goo.ne.jp",
+      "department": "Accounting"
+    },
+    {
+      "id": 7,
+      "first_name": "Raphaela",
+      "last_name": "Carnier",
+      "email": "rcarnier6@intel.com",
+      "department": "Business Development"
+    },
+    null,
+    {
+      "id": 9,
+      "first_name": "Matthus",
+      "last_name": "Barnewelle",
+      "email": "mbarnewelle8@shareasale.com",
+      "department": "Marketing"
+    },
+    {
+      "id": 10,
+      "first_name": "Ham",
+      "last_name": "Riediger",
+      "email": "hriediger9@mediafire.com",
+      "department": "Product Management"
+    }
+  ],
+  "buildings": [
+    {
+      "id": 2,
+      "address": "60124 Del Mar Terrace",
+      "category": true
+    },
+    {
+      "id": 3,
+      "address": "Santa Fe 1234",
+      "category": true
+    },
+    {
+      "id": 5,
+      "address": "7502 Manley Park",
+      "category": false
+    },
+    {
+      "id": 6,
+      "address": "833 Kropf Avenue",
+      "category": false
+    },
+    {
+      "id": 7,
+      "address": "0 Coolidge Road",
+      "category": false
+    },
+    {
+      "id": 8,
+      "address": "Santa Fe 1234",
+      "category": false
+    },
+    {
+      "id": 9,
+      "address": "0401 Northwestern Park",
+      "category": true
+    },
+    {
+      "id": 10,
+      "address": "01987 Coolidge Court",
+      "category": true
+    }
+  ],
+  "boilers": [
+    {
+      "id": 1,
+      "description": "Zoolab",
+      "type": "A"
+    },
+    {
+      "id": 4,
+      "description": "Gembucket",
+      "type": "D"
+    },
+    {
+      "id": 6,
+      "description": "Tampflex",
+      "type": "A"
+    },
+    {
+      "id": 7,
+      "description": "Bitwolf",
+      "type": "A"
+    },
+    {
+      "id": 8,
+      "description": "Tresom",
+      "type": "D"
+    },
+    {
+      "id": 9,
+      "description": "Opela",
+      "type": "B"
+    },
+    {
+      "id": 10,
+      "description": "Stringtough",
+      "type": "C"
+    },
+    {
+      "id": 11,
+      "description": "Konklab",
+      "type": "A"
+    },
+    {
+      "id": 12,
+      "description": "Sonair",
+      "type": "B"
+    }
+  ]
+}
