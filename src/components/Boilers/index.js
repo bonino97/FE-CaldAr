@@ -63,34 +63,40 @@ const Boilers = () => {
   };
 
   return (
-    <div className=''>
-      <div className=''>
-        <h2 className=''>Boilers General Listing</h2>
+    <>
+      <div className='row col-10 my-5 justify-content-between'>
+        <h2  className=''>Listado de calderas</h2>
         <button
-          color={showAddBoiler ? 'red' : 'green'}
-          text={showAddBoiler ? 'Close Add Boiler' : '+ Add Boiler'}
+          type='button'
+          className='btn btn-danger nuevo-post d-block d-md-inline-block'
           onClick={onClick}
-        />
+        >
+          Nueva Caldera &#43;
+        </button>
       </div>
       {showAddBoiler && <NewBoiler onAdd={addBoiler} />}
-      <table className=''>
-        <thead>
+      <table className='table table-striped'>
+        <thead className='bg-primary table-dark'>
           <tr>
-            <th> Id &#35; </th>
-            <th> Description </th>
-            <th> Type </th>
-            <th> Actions </th>
+            <th scope='col'> Id &#35; </th>
+            <th scope='col'> Descripcion </th>
+            <th scope='col'> Tipo </th>
+            <th scope='col'> Acciones </th>
           </tr>
         </thead>
         <tbody>
           {boilers.length === 0
-            ? 'No Boilers To Show'
+            ? 'No hay calderas registradas para mostrar'
             : boilers.map((boiler) => (
-                <Boiler key={boiler.id} boiler={boiler} onDelete={deleteBoiler} />
+                <Boiler
+                  key={boiler.id}
+                  boiler={boiler}
+                  onDelete={deleteBoiler}
+                />
               ))}
         </tbody>
       </table>
-    </div>
+    </>
   );
 };
 

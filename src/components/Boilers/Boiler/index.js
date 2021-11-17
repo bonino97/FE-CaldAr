@@ -27,7 +27,9 @@ const Boiler = ({ boiler, onDelete }) => {
   return (
     <>
       <tr>
-        <td>{boiler.id}</td>
+        <td>
+          <span className='font-weight-bold'> {boiler.id}</span>
+        </td>
         <td>{boiler.description}</td>
         <td>{boiler.type}</td>
         <td className='actions'>
