@@ -9,7 +9,7 @@ import {
 } from '../../../store/actions/boilersActions';
 
 const Boiler = ({ boiler }) => {
-  const { _id, name, email, phone } = boiler;
+  const { _id, description, type } = boiler;
 
   const dispatch = useDispatch();
   const history = useHistory(); // Habilitar history para redireccionar.
@@ -40,10 +40,10 @@ const Boiler = ({ boiler }) => {
   return (
     <tr>
       <td>
-        <span className='font-weight-bold'> {name} </span>
+        <span className='font-weight-bold'> {_id} </span>
       </td>
-      <td>{email}</td>
-      <td>{phone}</td>
+      <td>{description}</td>
+      <td>{type}</td>
       <td className='actions'>
         <button
           type='button'
