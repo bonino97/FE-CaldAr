@@ -19,6 +19,17 @@ h1 a.text-light:hover {
   text-decoration: none !important;
 }
 
+.mainOptions {
+  height: calc(100vh - 125px);
+  overflow: auto;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
 .new-post {
   font-weight: bold;
   text-transform: uppercase;

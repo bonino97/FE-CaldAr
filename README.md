@@ -41,3 +41,11 @@ npm i
 ```sh
 npm start
 ```
+
+## JSON Server
+
+Para la entrega de la clase 7, los datos se acceden consultando a un JSON Server que responde enviando datos almacenados en un archivo db.json en la carpeta 'mocks'
+
+```sh
+npm run server
+```

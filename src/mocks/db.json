@@ -128,16 +128,6 @@
       "id": 10,
       "description": "Stringtough",
       "type": "C"
-    },
-    {
-      "id": 11,
-      "description": "Konklab",
-      "type": "A"
-    },
-    {
-      "id": 12,
-      "description": "Sonair",
-      "type": "B"
     }
   ]
 }

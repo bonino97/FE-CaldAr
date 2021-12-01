@@ -1,56 +1,66 @@
-import { useState } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
-import EditBoiler from '../EditBoiler';
+import {
+  deleteBoilerAction,
+  setBoilerAction,
+} from '../../../store/actions/boilersActions';
 
-const Boiler = ({ boiler, onDelete }) => {
-  const [showEditBoiler, setShowEditBoiler] = useState(false);
+const Boiler = ({ boiler }) => {
+  const { _id, description, type } = boiler;
 
-  // onClick function to set showEditBoiler
-  const onClickEdit = () => {
-    setShowEditBoiler(!showEditBoiler);
+  const dispatch = useDispatch();
+  const history = useHistory(); // Habilitar history para redireccionar.
+
+  const onDeleteBoiler = (id) => {
+    // preguntar al usuario
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: 'Esta accion es irreversible.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.value) {
+        dispatch(deleteBoilerAction(id));
+      }
+    });
   };
 
-  const editBoiler = async (updatedValuesBoiler) => {
-    const res = await fetch(`http://localhost:5000/boilers/${boiler.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(updatedValuesBoiler),
-    });
-
-    console.log(
-      `editBoiler: ${updatedValuesBoiler.id} , ${updatedValuesBoiler.description} , ${updatedValuesBoiler.type}`
-    );
+  const onEditRedirection = (id) => {
+    dispatch(setBoilerAction(boiler));
+    history.push(`/boilers/edit/${id}`);
   };
 
   return (
-    <>
-      <tr>
-        <td>
-          <span className='font-weight-bold'> {boiler.id}</span>
-        </td>
-        <td>{boiler.description}</td>
-        <td>{boiler.type}</td>
-        <td className='actions'>
-          <button
-            type='button'
-            className='btn btn-primary m-1'
-            onClick={onClickEdit}
-          >
-            Editar
-          </button>
-          <button
-            type='button'
-            className='btn btn-danger m-1'
-            onClick={() => onDelete(boiler.id)}
-          >
-            Eliminar
-          </button>
-        </td>
-      </tr>
-      {showEditBoiler && <EditBoiler boiler={boiler} onEdit={editBoiler} />}
-    </>
+    <tr>
+      <td>
+        <span className='font-weight-bold'> {_id} </span>
+      </td>
+      <td>{description}</td>
+      <td>{type}</td>
+      <td className='actions'>
+        <button
+          type='button'
+          onClick={() => onEditRedirection(_id)}
+          className='btn btn-primary m-1'
+        >
+          Editar
+        </button>
+        <button
+          type='button'
+          className='btn btn-danger m-1'
+          onClick={() => onDeleteBoiler(_id)}
+        >
+          Eliminar
+        </button>
+      </td>
+    </tr>
   );
 };
 

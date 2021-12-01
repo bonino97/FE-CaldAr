@@ -1,102 +1,104 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Modal } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 import Boiler from './Boiler';
 import NewBoiler from './NewBoiler';
 
-const Boilers = () => {
-  const [showAddBoiler, setShowAddBoiler] = useState(false);
+import { getAllBoilersAction } from '../../store/actions/boilersActions';
+import { addNewBoilerAction } from '../../store/actions/boilersActions';
 
-  const [boilers, setBoilers] = useState([]);
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    position: 'absolute', 
+    width: 400,
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadows: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+  },
+  iconos: {
+    cursor: 'pointer',
+  },
+  inputMaterial: {
+    width: '100%',
+  },
+}));
+
+const Boilers = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [showModalFF, setShowModalFF] = useState(false);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const getBoilers = async () => {
-      const boilersFromServer = await fetchBoilers();
-      setBoilers(boilersFromServer);
-    };
-
-    getBoilers();
+    const getAllBoilers = () => dispatch(getAllBoilersAction());
+    getAllBoilers();
   }, []);
 
-  //fetch boilers (All)
-  const fetchBoilers = async () => {
-    const res = await fetch('http://localhost:5000/boilers');
-    const data = await res.json();
+  const { loading, error, boilers } = useSelector((state) => state.boilers);
 
-    return data;
+  // Llama el action.
+  const addNewBoiler = (boiler) => dispatch(addNewBoilerAction(boiler));
+
+
+  //crea nuevo boiler desde formulario hecho con final forms
+  const addBoilerFF = (boiler) => {
+    addNewBoiler(boiler);
+    openCloseModalFF();
   };
 
-  //fetch a boiler (by id)
-  // const fetchBoiler = async (id) => {
-  //   const res = await fetch(`http://localhost:5000/boilers/{id}`);
-  //   const data = await res.json();
-
-  //   return data;
-  // };
-
-  //Add Boiler
-  const addBoiler = async (boiler) => {
-    const res = await fetch(`http://localhost:5000/boilers`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(boiler),
-    });
-
-    const data = await res.json();
-
-    setBoilers([...boilers, data]);
-  };
-
-  // Delete Boiler
-  const deleteBoiler = async (id) => {
-    await fetch(`http://localhost:5000/boilers/${id}`, {
-      method: 'DELETE',
-    });
-
-    setBoilers(boilers.filter((boiler) => boiler.id !== id));
-  };
-
-  // onClick function to set showAddBoiler
-  const onClick = () => {
-    setShowAddBoiler(!showAddBoiler);
+  //modal para formulario hecho con final forms
+  const openCloseModalFF = () => {
+    setShowModalFF(!showModalFF);
   };
 
   return (
-    <>
-      <div className='row col-10 my-5 justify-content-between'>
-        <h2  className=''>Listado de calderas</h2>
-        <button
-          type='button'
-          className='btn btn-danger nuevo-post d-block d-md-inline-block'
-          onClick={onClick}
-        >
-          Nueva Caldera &#43;
-        </button>
-      </div>
-      {showAddBoiler && <NewBoiler onAdd={addBoiler} />}
-      <table className='table table-striped'>
-        <thead className='bg-primary table-dark'>
-          <tr>
-            <th scope='col'> Id &#35; </th>
-            <th scope='col'> Descripcion </th>
-            <th scope='col'> Tipo </th>
-            <th scope='col'> Acciones </th>
-          </tr>
-        </thead>
-        <tbody>
-          {boilers.length === 0
-            ? 'No hay calderas registradas para mostrar'
-            : boilers.map((boiler) => (
-                <Boiler
-                  key={boiler.id}
-                  boiler={boiler}
-                  onDelete={deleteBoiler}
-                />
-              ))}
-        </tbody>
-      </table>
-    </>
+    <div>
+      <>
+        <h2 className='text-center my-5'>Listado de Calderas</h2>
+        {loading ? <h4 className='text-center'> Loading... </h4> : null}
+
+        {error ? (
+          <p className='alert alert-danger p-2 m-4 text-center'>
+            Ocurrio un error.
+          </p>
+        ) : null}
+
+        <div className='row pb-2'>
+          <div className='col-12 text-center'>
+            <button className='btn btn-primary m-1' onClick={openCloseModalFF}>
+              Agregar Caldera
+            </button>
+            <Modal open={showModalFF} onClose={openCloseModalFF}>
+              <NewBoiler onAdd={addBoilerFF} />
+            </Modal>
+          </div>
+        </div>
+
+        <table className='table table-striped'>
+          <thead className='bg-primary table-dark'>
+            <tr>
+              <th scope='col'>Id#</th>
+              <th scope='col'>Descripci&oacute;n</th>
+              <th scope='col'>Tipo</th>
+              <th scope='col'>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {boilers.length === 0
+              ? 'No hay Proveedores para mostrar'
+              : boilers.map((boiler) => (
+                  <Boiler key={boiler._id} boiler={boiler} />
+                ))}
+          </tbody>
+        </table>
+      </>
+    </div>
   );
 };
 
