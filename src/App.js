@@ -17,6 +17,8 @@ import EditBuilding from './components/Buildings/EditBuilding';
 import Users from './components/Users';
 // Components - Boilers branch
 import Boilers from './components/Boilers';
+import NewBoiler from './components/Boilers/NewBoiler';
+import EditBoiler from './components/Boilers/EditBoiler';
 //
 
 function App() {
@@ -28,12 +30,22 @@ function App() {
           <Sidebar />
           <div className='container'>
             <Switch>
+              {/* Rutas Dashboard */}
               <Route exact path='/' component={Dashboard} />
+              {/* Rutas Buildings */}
               <Route exact path='/buildings' component={Buildings} />
               <Route exact path='/buildings/new' component={NewBuilding} />
-              <Route exact path='/buildings/edit/:id' component={EditBuilding} />
+              <Route
+                exact
+                path='/buildings/edit/:id'
+                component={EditBuilding}
+              />
+              {/* Rutas Users */}
               <Route exact path='/users' component={Users} />
+              {/* Rutas Boilers */}
               <Route exact path='/boilers' component={Boilers} />
+              <Route exact path='/Boilers/new' component={NewBoiler} />
+              <Route exact path='/Boilers/edit/:id' component={EditBoiler} />
             </Switch>
           </div>
         </div>

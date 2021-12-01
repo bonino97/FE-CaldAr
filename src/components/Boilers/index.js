@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import Boiler from './Boiler';
-import NewBoiler from './NewBoiler';
 
 const Boilers = () => {
-  const [showAddBoiler, setShowAddBoiler] = useState(false);
-
   const [boilers, setBoilers] = useState([]);
 
   useEffect(() => {
@@ -57,24 +55,17 @@ const Boilers = () => {
     setBoilers(boilers.filter((boiler) => boiler.id !== id));
   };
 
-  // onClick function to set showAddBoiler
-  const onClick = () => {
-    setShowAddBoiler(!showAddBoiler);
-  };
-
   return (
     <>
       <div className='row col-10 my-5 justify-content-between'>
-        <h2  className=''>Listado de calderas</h2>
-        <button
-          type='button'
+        <h2 className=''>Listado de calderas</h2>
+        <Link
+          to={'/boilers/new'}
           className='btn btn-danger nuevo-post d-block d-md-inline-block'
-          onClick={onClick}
         >
           Nueva Caldera &#43;
-        </button>
+        </Link>
       </div>
-      {showAddBoiler && <NewBoiler onAdd={addBoiler} />}
       <table className='table table-striped'>
         <thead className='bg-primary table-dark'>
           <tr>
