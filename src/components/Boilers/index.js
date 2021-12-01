@@ -37,10 +37,7 @@ const Boilers = () => {
         <div className='row pb-2'>
           <div className='col-12 text-center'>
             <button className='btn btn-primary m-1' onClick=''>
-              Agregar Proveedor (React Forms)
-            </button>
-            <button className='btn btn-primary m-1' onClick=''>
-              Agregar Proveedor (Final Forms)
+              Agregar Caldera (Final Forms)
             </button>
           </div>
         </div>
@@ -56,7 +53,7 @@ const Boilers = () => {
           </thead>
           <tbody>
             {boilers.length === 0
-              ? 'No hay Proveedores para mostrar'
+              ? 'No hay Calderas para mostrar'
               : boilers.map((boiler) => (
                   <Boiler key={boiler._id} boiler={boiler} />
                 ))}
