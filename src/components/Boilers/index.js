@@ -25,7 +25,7 @@ const Boilers = () => {
   return (
     <div>
       <>
-        <h2 className='text-center my-5'>Listado de Proveedores</h2>
+        <h2 className='text-center my-5'>Listado de Calderas</h2>
         {loading ? <h4 className='text-center'> Loading... </h4> : null}
 
         {error ? (
@@ -48,9 +48,9 @@ const Boilers = () => {
         <table className='table table-striped'>
           <thead className='bg-primary table-dark'>
             <tr>
-              <th scope='col'>Nombre</th>
-              <th scope='col'>Email</th>
-              <th scope='col'>Tel&eacute;fono</th>
+              <th scope='col'>Id#</th>
+              <th scope='col'>Descripi&oacute;n</th>
+              <th scope='col'>Tipo</th>
               <th scope='col'>Acciones</th>
             </tr>
           </thead>
