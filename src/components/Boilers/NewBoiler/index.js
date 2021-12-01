@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
-import { required, email } from '../../../utils/validations';
+import { required } from '../../../utils/validations';
 
 import Button from '../../../shared/Button/Button';
 import TextInput from '../../../shared/TextInput/TextInput';
@@ -18,12 +18,12 @@ const NewBoiler = ({ onAdd }) => {
         <div className='card'>
           <div className='card-body'>
             <h2 className='text-center mb-4 font-weight-bold'>
-              Agregar Nuevo Proveedor (Final Forms)
+              Agregar Nueva Caldera
             </h2>
 
             <Form
               onSubmit={onSubmitBoiler}
-              initialValues={{ name: '', email: '', phone: '' }}
+              initialValues={{ _id: '', description: '', type: '' }}
               render={({
                 handleSubmit,
                 form,
@@ -34,40 +34,40 @@ const NewBoiler = ({ onAdd }) => {
                 <form onSubmit={handleSubmit}>
                   <div className='form-group'>
                 <label>
-                  Nombre Proveedor <span className='text-danger'>*</span>
+                  Id# <span className='text-danger'>*</span>
                 </label>
                     <Field
-                      name='name'
+                      name='_id'
                       component='input'
                       className='form-control'
-                      placeholder='Nombre del Proveedor'
-                      label='Nombre:'
+                      placeholder='Ingrese el id'
+                      label='Id#:'
                       validate={required}
                     />
                   </div>
                   <div className='form-group'>
                 <label>
-                  Email Proveedor <span className='text-danger'>*</span>
+                  Descripci&oacute;n <span className='text-danger'>*</span>
                 </label>
                     <Field
-                      name='email'
+                      name='description'
                       component='input'
                       className='form-control'
-                      placeholder='Email del Proveedor'
-                      label='Email:'
-                      validate={email}
+                      placeholder='Descripci&oacute;n'
+                      label='Descripci&oacute;n:'
+                      validate={required}
                     />
                   </div>
                   <div className='form-group'>
                 <label>
-                  Telefono Proveedor <span className='text-danger'>*</span>
+                  Tipo <span className='text-danger'>*</span>
                 </label>
                     <Field
-                      name='phone'
+                      name='type'
                       component='input'
                       className='form-control'
-                      placeholder='Telefono del Proveedor'
-                      label='Telefono:'
+                      placeholder='Tipo de caldera'
+                      label='Tipo:'
                       validate={required}
                     />
                   </div>
