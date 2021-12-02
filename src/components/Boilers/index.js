@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Boilers = () => {
-  const [showModal, setShowModal] = useState(false);
   const [showModalFF, setShowModalFF] = useState(false);
 
   const dispatch = useDispatch();

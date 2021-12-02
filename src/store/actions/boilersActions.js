@@ -158,6 +158,10 @@ export const editBoilerAction = (boiler) => {
   };
 };
 
+const editBoiler = () => ({
+  type: EDIT_BOILER,
+});
+
 const editBoilerSuccess = (boiler) => ({
   type: EDIT_BOILER_SUCCESS,
   payload: boiler,
