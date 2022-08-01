@@ -1,5 +1,5 @@
-import Swal from 'sweetalert2';
-import axiosClient from '../../config/axios';
+import Swal from "sweetalert2";
+import axiosClient from "../../config/axios";
 import {
   ADD_BOILER,
   ADD_BOILER_SUCCESS,
@@ -14,9 +14,9 @@ import {
   GET_BOILERS_SUCCESS,
   GET_BOILERS_ERROR,
   SET_BOILER,
-} from '../../types/boilers';
+} from "../../types/boilers";
 
-const boilerUrl = '/boiler';
+const boilerUrl = "/boiler";
 
 // Crear Nuevo Boiler.
 export function addNewBoilerAction(boiler) {
@@ -29,20 +29,16 @@ export function addNewBoilerAction(boiler) {
       dispatch(addNewBoilerSuccess(boiler));
 
       // Alerta exitosa.
-      Swal.fire(
-        'Correcto',
-        'La caldera se agrego correctamente...',
-        'success'
-      );
+      Swal.fire("Correcto", "La caldera se agrego correctamente...", "success");
     } catch (error) {
       console.error(error);
       // Si falla, envia una notificacion de error.
       dispatch(addNewBoilerError(true));
       // Alerta de error.
       Swal.fire({
-        icon: 'error',
-        title: 'Ocurrio un error.',
-        text: 'Ocurrio un error, intenta de nuevo.',
+        icon: "error",
+        title: "Ocurrio un error.",
+        text: "Ocurrio un error, intenta de nuevo.",
       });
     }
   };
@@ -100,17 +96,17 @@ export const deleteBoilerAction = (id) => {
       await axiosClient.delete(`${boilerUrl}/${id}`);
       dispatch(deleteBoilerSuccess(id));
       Swal.fire(
-        'Eliminada',
-        'La caldera se elimino correctamente...',
-        'success'
+        "Eliminada",
+        "La caldera se elimino correctamente...",
+        "success"
       );
     } catch (error) {
       console.error(error);
       dispatch(deleteBoilerError(true));
       Swal.fire({
-        icon: 'error',
-        title: 'Ocurrio un error.',
-        text: 'Ocurrio un error al eliminar la caldera, intenta de nuevo.',
+        icon: "error",
+        title: "Ocurrio un error.",
+        text: "Ocurrio un error al eliminar la caldera, intenta de nuevo.",
       });
     }
   };
@@ -140,19 +136,15 @@ export const editBoilerAction = (boiler) => {
       dispatch(editBoilerSuccess(boiler));
       dispatch(getAllBoilersAction());
       // Alerta exitosa.
-      Swal.fire(
-        'Correcto',
-        'La caldera se edito correctamente...',
-        'success'
-      );
+      Swal.fire("Correcto", "La caldera se edito correctamente...", "success");
     } catch (error) {
       // Si falla, envia una notificacion de error.
       dispatch(editBoilerError(true));
       // Alerta de error.
       Swal.fire({
-        icon: 'error',
-        title: 'Ocurrio un error.',
-        text: 'Ocurrio un error, intenta de nuevo.',
+        icon: "error",
+        title: "Ocurrio un error.",
+        text: "Ocurrio un error, intenta de nuevo.",
       });
     }
   };
