@@ -39,7 +39,7 @@ const Users = () => {
         </thead>
         <tbody>
           {users?.length === 0
-            ? "No hay Edificios"
+            ? "No hay Usuarios"
             : users?.map((user) => <User key={user._id} user={user} />)}
         </tbody>
       </table>

@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // Redux
 import { Provider } from "react-redux";
 import store from "./store";
-//
+
+// Login Auth.
+import Login from "./components/Auth/Login";
 
 // Components - Layout
 import Header from "./shared/Header";
@@ -33,6 +35,7 @@ function App() {
           <Sidebar />
           <div className="container">
             <Switch>
+              <Route exact path="/login" component={Login} />
               {/* Rutas Dashboard */}
               <Route exact path="/" component={Dashboard} />
               {/* Rutas Buildings */}

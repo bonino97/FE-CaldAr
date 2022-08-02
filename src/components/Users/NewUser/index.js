@@ -6,6 +6,13 @@ import Button from "../../../shared/Button/Button";
 import TextInput from "../../../shared/TextInput/TextInput";
 
 const NewUser = ({ onAdd }) => {
+  const initialFormValues = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    department: "",
+  };
+
   const onSubmitUser = (values) => {
     console.log(values);
 
@@ -23,7 +30,7 @@ const NewUser = ({ onAdd }) => {
 
             <Form
               onSubmit={onSubmitUser}
-              initialValues={{ _id: "", description: "", type: "" }}
+              initialValues={initialFormValues}
               render={({
                 handleSubmit,
                 form,
@@ -34,40 +41,53 @@ const NewUser = ({ onAdd }) => {
                 <form onSubmit={handleSubmit}>
                   <div className="form-group">
                     <label>
-                      Id# <span className="text-danger">*</span>
+                      Nombre <span className="text-danger">*</span>
                     </label>
                     <Field
-                      name="_id"
+                      name="firstName"
                       component="input"
                       className="form-control"
-                      placeholder="Ingrese el id"
-                      label="Id#:"
+                      placeholder="Nombre"
+                      label="Nombre:"
                       validate={required}
                     />
                   </div>
                   <div className="form-group">
                     <label>
-                      Descripci&oacute;n <span className="text-danger">*</span>
+                      Apellido <span className="text-danger">*</span>
                     </label>
                     <Field
-                      name="description"
+                      name="lastName"
                       component="input"
                       className="form-control"
-                      placeholder="Descripci&oacute;n"
-                      label="Descripci&oacute;n:"
+                      placeholder="Apellido"
+                      label="Apellido"
                       validate={required}
                     />
                   </div>
                   <div className="form-group">
                     <label>
-                      Tipo <span className="text-danger">*</span>
+                      Email <span className="text-danger">*</span>
                     </label>
                     <Field
-                      name="type"
+                      name="email"
                       component="input"
                       className="form-control"
-                      placeholder="Tipo de Usuario"
-                      label="Tipo:"
+                      placeholder="Email"
+                      label="Email"
+                      validate={required}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>
+                      Departamento <span className="text-danger">*</span>
+                    </label>
+                    <Field
+                      name="department"
+                      component="input"
+                      className="form-control"
+                      placeholder="Departamento"
+                      label="Departamento"
                       validate={required}
                     />
                   </div>
