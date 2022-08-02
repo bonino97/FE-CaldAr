@@ -11,6 +11,7 @@ import {
   EDIT_USER,
   EDIT_USER_SUCCESS,
   EDIT_USER_ERROR,
+  SET_USER,
 } from "../../types/users";
 
 // Cada reducer tiene su propio State.
@@ -19,10 +20,12 @@ const initialState = {
   error: null,
   loading: false,
   user: null,
+  selectedUser: null,
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default function (state = initialState, action) {
+  console.log(action);
   switch (action.type) {
     case ADD_USER:
       return {
@@ -111,6 +114,12 @@ export default function (state = initialState, action) {
         loading: false,
         error: action.payload,
         // En este caso, el error pasa a true. (Para poder notificar al usuario)
+      };
+    case SET_USER:
+      return {
+        ...state,
+        loading: false,
+        selectedUser: action.payload,
       };
     default:
       return state;

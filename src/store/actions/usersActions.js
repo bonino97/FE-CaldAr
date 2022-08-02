@@ -1,5 +1,5 @@
-import Swal from 'sweetalert2';
-import client from '../../config/axios';
+import Swal from "sweetalert2";
+import client from "../../config/axios";
 import {
   ADD_USER,
   ADD_USER_SUCCESS,
@@ -13,9 +13,10 @@ import {
   GET_USERS,
   GET_USERS_SUCCESS,
   GET_USERS_ERROR,
-} from '../../types/users';
+  SET_USER,
+} from "../../types/users";
 
-const userUrl = '/user';
+const userUrl = "/user";
 
 // Crear Nuevo Usuario.
 export function addNewUserAction(user) {
@@ -28,20 +29,16 @@ export function addNewUserAction(user) {
       dispatch(addNewUserSuccess(user));
 
       // Alerta exitosa.
-      Swal.fire(
-        'Correcto',
-        'El usuario se agrego correctamente...',
-        'success'
-      );
+      Swal.fire("Correcto", "El usuario se agrego correctamente...", "success");
     } catch (error) {
       console.error(error);
       // Si falla, envia una notificacion de error.
       dispatch(addNewUserError(true));
       // Alerta de error.
       Swal.fire({
-        icon: 'error',
-        title: 'Ocurrio un error.',
-        text: 'Ocurrio un error, intenta de nuevo.',
+        icon: "error",
+        title: "Ocurrio un error.",
+        text: "Ocurrio un error, intenta de nuevo.",
       });
     }
   };
@@ -69,6 +66,7 @@ export function getAllUsersAction() {
     dispatch(getAllUsers());
     try {
       const { data } = await client.get(`${userUrl}/all`);
+      if (!data) dispatch(getAllUsersError(true));
       dispatch(getAllUsersSuccess(data));
     } catch (error) {
       console.error(error);
@@ -99,17 +97,17 @@ export const deleteUserAction = (id) => {
       await client.delete(`${userUrl}/${id}`);
       dispatch(deleteUserSuccess(id));
       Swal.fire(
-        'Eliminado',
-        'El usuario se elimino correctamente...',
-        'success'
+        "Eliminado",
+        "El usuario se elimino correctamente...",
+        "success"
       );
     } catch (error) {
       console.error(error);
       dispatch(deleteUserError(true));
       Swal.fire({
-        icon: 'error',
-        title: 'Ocurrio un error.',
-        text: 'Ocurrio un error al eliminar el usuario, intenta de nuevo.',
+        icon: "error",
+        title: "Ocurrio un error.",
+        text: "Ocurrio un error al eliminar el usuario, intenta de nuevo.",
       });
     }
   };
@@ -149,4 +147,15 @@ const editUserSuccess = (user) => ({
 const editUserError = (status) => ({
   type: EDIT_USER_ERROR,
   payload: status,
+});
+
+export const setUserAction = (user) => {
+  return async (dispatch) => {
+    dispatch(setUser(user));
+  };
+};
+
+const setUser = (user) => ({
+  type: SET_USER,
+  payload: user,
 });
